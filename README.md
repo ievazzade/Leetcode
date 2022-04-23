@@ -2,4 +2,4 @@
 
 | Title                    | Leetcode Link |
 |--------------------------|---------------|
-|14 longest common prefix  | url here      |
+|14 longest common prefix  | [Link](https://leetcode.com/problems/longest-common-prefix/)      |
