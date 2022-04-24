@@ -18,6 +18,5 @@ class Solution:
         while fast.next is not None:
             slow = slow.next
             fast = fast.next
-        if slow.next is not None:
-            slow.next = slow.next.next
+        slow.next = slow.next.next
         return head
