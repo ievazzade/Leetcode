@@ -1,5 +1,3 @@
-from hashlib import new
-from operator import ne
 from typing import Optional
 ##################################################
 # Defenition for singly-linked list.
