@@ -7,3 +7,4 @@
 |237| Delete Node in a Linked List | Linked Lists | [Link](https://leetcode.com/problems/delete-node-in-a-linked-list/)|
 |19 | Remove Nth Node From End of List| Linked Lists|[Link](https://leetcode.com/problems/remove-nth-node-from-end-of-list/)|
 |206| Reverse Linked List |Linked Lists| [Link](https://leetcode.com/problems/reverse-linked-list/)|
+|21 | Merge Two Sorted Lists| Linked Lists| [Link](https://leetcode.com/problems/merge-two-sorted-lists/)|
