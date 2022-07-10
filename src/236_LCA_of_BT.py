@@ -32,3 +32,21 @@ class Solution:
         if right == None: return left
         
         return root
+
+class Solution:
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+
+        def rec_LCA(node):
+            if not node:
+                    return None
+            if node in [p,q]:
+                return node
+
+            left, right = rec_LCA(node.left), rec_LCA(node.right)
+
+            if left and right:
+                return node
+
+            return left or right
+        
+        return rec_LCA(root)
