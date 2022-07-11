@@ -35,3 +35,23 @@ class Solution:
         for key in list_key:
             res.append(ans[key])
         return res
+
+class Solution:
+    def verticalOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+        ans = {}
+        if not root:return ans
+        
+        queue = deque([(0, root)])
+        
+        while queue:
+            level, node = queue.popleft()
+            if level not in ans:
+                ans[level] = [node.val]
+            else:
+                ans[level].append(node.val)
+            if node.left:
+                queue.append([level - 1, node.left])
+            if node.right:
+                queue.append([level + 1, node.right])
+        
+        return [ans[x] for x in sorted(ans.keys())]
