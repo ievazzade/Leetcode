@@ -42,16 +42,19 @@ class Solution:
         if not root:return ans
         
         queue = deque([(0, root)])
-        
+        minC, maxC = 0,0
+
         while queue:
-            level, node = queue.popleft()
-            if level not in ans:
-                ans[level] = [node.val]
+            column, node = queue.popleft()
+            if column not in ans:
+                ans[column] = [node.val]
             else:
-                ans[level].append(node.val)
+                ans[column].append(node.val)
+            minC = min(minC, column)
+            maxC = max(maxC, column)
             if node.left:
-                queue.append([level - 1, node.left])
+                queue.append([column - 1, node.left])
             if node.right:
-                queue.append([level + 1, node.right])
+                queue.append([column + 1, node.right])
         
-        return [ans[x] for x in sorted(ans.keys())]
+        return [ans[x] for x in range(minC, maxC + 1)]
