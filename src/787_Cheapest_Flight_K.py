@@ -32,6 +32,24 @@ class Solution:
             return -1
         else:
             return D[dst]
+    
+    
+    def bellmanFord(self, n, flights, src , dst, K):
+        prices = [float('inf') for _ in range(n)]
+        prices[src] = 0
+
+        for i in range(K+1):
+            temp_price = prices.copy()
+        
+            for u, v, w in flights:
+                if prices[u] == float('inf'):
+                    continue
+                if prices[u] + w < temp_price[v]:
+                    temp_price[v] = prices[u] + w
+            prices = temp_price
+        
+        return -1 if prices[dst] == float('inf') else prices[dst]
+
 
 if __name__ == "__main__":
     n = 4
@@ -41,4 +59,5 @@ if __name__ == "__main__":
     K = 1
     s = Solution()
     ans = s.findCheapestPrice(n, flights, src, dst, K)
-    print(ans)
+    ans2 = s.bellmanFord(n, flights, src, dst, K)
+    print(ans, ans2)
