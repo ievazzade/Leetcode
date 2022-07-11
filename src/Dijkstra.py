@@ -52,3 +52,15 @@ D = dijkstra(g, 0)
 print(D)
 
 # {0: 0, 1: 4, 2: 11, 3: 17, 4: 9, 5: 22, 6: 7, 7: 8, 8: 11}
+
+
+"""
+Time Complexity
+
+In this algorithm, we pass each edge once, which results in time complexity of O(|E|), where |E| represents the number of edges.
+We also visit each node once, which results in time complexity of O(|V|), where |V| represents the number of vertices. Each vertex will be put in a priority queue, where finding the next closest vertex is going to be done in constant O(1) time. However, we use O(Vlog|V|) time to sort the vertices in this priority queue.
+This results in time complexity of this algorithm being O(|E|+|V|log|V|).
+
+
+REF: https://stackabuse.com/courses/graphs-in-python-theory-and-implementation/lessons/dijkstras-algorithm/
+"""
