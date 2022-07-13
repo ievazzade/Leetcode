@@ -21,3 +21,23 @@ class Solution:
             return True
         
         return helper(s, 0, len(s) - 1, k)
+
+
+
+class Solution:
+    def isValidPalindrome(self, s, k):
+        cache = {}
+        res = self.helper(s, cache, 0, len(s) - 1, k)
+        return res
+    
+    def helper(self, s, cache, start, end, k):
+        if (start, end, k) in cache:
+            return cache[(start, end, k)]
+        while start < end:
+            if s[start] == s[end]:
+                cache[(start, end, k)] = self.helper(s, cache, start+1, end-1)
+            else:
+                if not k:
+                   cache[(start, end, k)] == False
+                else:
+                    
