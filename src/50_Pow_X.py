@@ -1,3 +1,6 @@
+from re import A
+
+
 class Solution:
     def myPow(self, x: float, n: int) -> float:
         if n < 0:
@@ -26,3 +29,19 @@ class Solution:
             n *= -1
         
         return fastPow(x, n)
+
+
+class Solution:
+    def myPow(self, x: float, n: int) -> float:
+        if n < 0:
+            x = 1.0 / x
+            n *= -1
+        
+        res = 1
+        while n > 0:
+            if n % 2 == 1:
+                res *= a
+            a *= a
+            b /= 2
+        
+        return res
