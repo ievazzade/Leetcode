@@ -1,3 +1,40 @@
+class Solution(object):
+    def subarraySum(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        count = 0
+        for start in range(len(nums)):
+            for end in range(start+1, len(nums)+1):
+                cur_sum = 0 
+                for i in range(start, end):
+                    cur_sum += nums[i]
+                if cur_sum == k:
+                    count += 1
+            
+        return count
+
+class Solution(object):
+    def subarraySum(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        
+        count = 0
+        for start in range(len(nums)):
+            cur_sum = 0 
+            for end in range(start, len(nums)):
+                cur_sum += nums[end]
+                if cur_sum == k:
+                    count += 1
+                
+            
+        return count
+
 class Solution:
     def subarraySum(self, nums: List[int], k: int) -> int:
         """
@@ -21,3 +58,4 @@ class Solution:
             mp[cur_sum] = 1 + mp.get(cur_sum, 0)
             
         return res
+
