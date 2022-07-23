@@ -27,3 +27,27 @@ class Solution:
     
     def squared_distance(self, point):
         return point[0] ** 2 + point[1] ** 2
+
+# Max Heap
+class Solution(object):
+    def kClosest(self, points, k):
+        """
+        :type points: List[List[int]]
+        :type k: int
+        :rtype: List[List[int]]
+        """
+        if k == len(points):
+            return points
+        
+        def sqr_distance(point):
+            return point[0]**2 + point[1]**2
+       
+        heap = [(-sqr_distance(points[i]), i) for i in range(k)]
+        heapq.heapify(heap)
+        
+        for i in range(k, len(points)):
+            dist = - sqr_distance(points[i])
+            if dist > heap[0][0]:
+                heapq.heappushpop(heap, (dist, i))
+        
+        return [points[i] for (_, i) in heap]
