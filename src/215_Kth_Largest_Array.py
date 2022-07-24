@@ -12,6 +12,21 @@ class Solution:
     def findKthLargest(self, nums: List[int], k: int) -> int:
         return heapq.nlargest(k, nums)[-1]
 
+class Solution:
+    def findKthLargest(self, nums: List[int], k: int) -> int:
+        """
+        [3,2,1,5,6,4]
+         
+        """
+        heap = [nums[i] for i in range(k)]
+        heapq.heapify(heap)
+        
+        for i in range(k, len(nums)):
+            if nums[i] > heap[0]:
+                heapq.heappushpop(heap, nums[i])
+        
+        return heap[0]
+
 # QuickSelect
 # Average O(n); Worst O(n^2)
 class Solution:
