@@ -32,8 +32,12 @@ class Solution:
 class Solution:
     def findKthLargest(self, nums: List[int], k: int) -> int:
         """
-        [3,2,1,5,6,4]
-         
+        [3,2,1,4,6,5]
+                 l r
+                 i
+               p         
+         pivot = 
+        [1,2,3,4,5,6]
         """
         k = len(nums) - k
         
