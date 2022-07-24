@@ -51,3 +51,43 @@ class Solution(object):
                 heapq.heappushpop(heap, (dist, i))
         
         return [points[i] for (_, i) in heap]
+
+# Binary Search
+class Solution:
+    def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
+        distances = [self.euclidean_distance(point) for point in points]
+        
+        remaining = [i for i in range(len(points))]
+        
+        low, high = 0, max(distances)
+        
+        closest = []
+        while k:
+            mid = (low + high) / 2
+            closer, farther = self.split_distances(remaining, distances, mid)
+            if len(closer) > k:
+                remining = closer
+                high = mid
+            else:
+                k -= len(closer)
+                closest.extend(closer)
+                remaining = farther
+                low= mid
+            
+        return [points[i] for i in closest]
+        
+        
+    
+    def split_distances(self, remaining, distances, mid):
+        closer, farther = [], []
+        for index in remaining:
+            if distances[index] <= mid:
+                closer.append(index)
+            else:
+                farther.append(index)
+            
+        return [closer, farther]
+    
+    
+    def euclidean_distance(self, point):
+        return (point[0] ** 2 + point[1] ** 2)
