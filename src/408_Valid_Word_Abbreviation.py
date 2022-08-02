@@ -35,4 +35,32 @@ class Solution:
             
         
         return i == m  and j == n
+ 
+ 
+ class Solution:
+    def validWordAbbreviation(self, word: str, abbr: str) -> bool:
+        """
+        "internationa"
+                    ^
+        "i3rna4al"
+               ^
+        """
+        p1, p2 = 0, 0 
         
+        while p1 < len(word) and p2 < len(abbr):
+            if word[p1] == abbr[p2]:
+                p1 += 1
+                p2 += 1
+            elif abbr[p2] == "0": return False
+            
+            elif abbr[p2].isnumeric():
+                num_str = []
+                while p2 < len(abbr) and abbr[p2].isnumeric():
+                    num_str.append(abbr[p2])
+                    p2 += 1
+                num = int("".join(num_str))
+                p1 += num
+            else:
+                return False
+        
+        return (p1 == len(word)) and (p2 == len(abbr))
