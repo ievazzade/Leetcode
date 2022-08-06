@@ -54,3 +54,33 @@ class Solution:
             else: return nums[p]
         
         return quickSelect(0, len(nums) - 1)
+
+class Solution:
+    def findKthLargest(self, nums: List[int], k: int) -> int:
+        """
+         0,1,2,3,4,5
+        [3,2,1,5,6,4]
+        """
+        k = len(nums) - k
+        def partition(nums, l, r):
+            pivot, p = nums[r], l
+            while l < r:
+                if nums[l] < pivot:
+                    nums[l], nums[p] = nums[p], nums[l]
+                    p += 1
+                    
+                l += 1
+            nums[r], nums[p]  = nums[p], nums[r]
+            return p
+        
+        l,  r = 0, len(nums) - 1        
+        
+        while l <= r:
+            pi = partition(nums, l, r)
+            if pi == k:
+                return nums[pi]
+            elif pi < k:
+                l = pi + 1
+            else:
+                r = pi - 1
+                
