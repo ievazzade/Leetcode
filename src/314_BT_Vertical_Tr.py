@@ -58,3 +58,49 @@ class Solution:
                 queue.append([column + 1, node.right])
         
         return [ans[x] for x in range(minC, maxC + 1)]
+
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def verticalOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+        """
+        keep track of min and max
+        {-1:[9], 0:[3,15], 1:[20], 2:[7]}
+        queue = [(node, col)]
+        """
+        if not root:
+            return []
+        
+        self.ans = {}
+        minC, maxC = 0, 0
+        
+        def dfs(node, row, col):
+            nonlocal minC, maxC
+            
+            if node:
+                if col in self.ans:
+                    self.ans[col].append([row, node.val])
+                else:
+                    self.ans[col] = [[row, node.val]]
+                minC = min(minC, col)
+                maxC = max(maxC, col)
+                
+                dfs(node.left, row + 1, col - 1)
+                dfs(node.right, row + 1, col + 1)
+                
+        dfs(root, 0, 0)           
+        res = []
+
+        for i in range(minC, maxC + 1):
+            col = sorted(self.ans[i], key = lambda x: x[0])
+            values = [val[1] for val in col]
+            res.append(values)
+        
+        return res
+            
+        
