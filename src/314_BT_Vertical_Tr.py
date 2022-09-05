@@ -83,10 +83,10 @@ class Solution:
             nonlocal minC, maxC
             
             if node:
-                if col in self.ans:
-                    self.ans[col].append([row, node.val])
-                else:
-                    self.ans[col] = [[row, node.val]]
+                if col not in self.ans:
+                    self.ans[col] = []
+                self.ans[col].append([row, node.val])
+
                 minC = min(minC, col)
                 maxC = max(maxC, col)
                 
