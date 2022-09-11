@@ -13,3 +13,17 @@ class Solution:
                 if chance == count:
                     res = i
         return res
+
+class Solution:
+    def __init__(self, nums: List[int]):
+        self.nums = nums
+
+    def pick(self, target: int) -> int:
+        idxs = []
+        for i, num in enumerate(self.nums):
+            if num == target:
+                idxs.append(i)
+        
+        return idxs[random.randint(0, len(idxs) - 1)]
+                
+
