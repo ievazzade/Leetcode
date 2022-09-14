@@ -32,4 +32,39 @@ class Solution:
 
         return root
         
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
 
+class Solution:
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        pFound = False
+        qFound = False
+        
+        def dfs(node):
+            nonlocal pFound, qFound
+            
+            if not node:
+                return None
+
+            left = dfs(node.left)
+            right = dfs(node.right)            
+            
+            if node == p:
+                pFound = True
+                return node
+            if node == q:
+                qFound = True
+                return node
+            
+            if left == None: return right
+            if right == None: return left
+            
+            return node
+        
+        ans = dfs(root)
+        
+        return ans if (pFound and qFound) else None
