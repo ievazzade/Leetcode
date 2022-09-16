@@ -45,3 +45,21 @@ class Solution:
             l -= 1
             r += 1
         return s[l + 1: r]
+
+class Solution:
+    def longestPalindrome(self, s: str) -> str:
+        """
+        b a b a d
+        i j
+        """
+        res = ""
+        max_pal = 0
+        for i in range(1,len(s)+1):
+            for j in range(i):
+                if self.isPalindrome(s[j:i]):
+                    if (i - j + 1) > max_pal:
+                        res = s[j:i]
+                        max_pal = i - j + 1
+        return res
+    def isPalindrome(self, string):
+        return string == string[::-1]
